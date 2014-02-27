@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Sample Page</title>
+        
+    </head>
+    <body>
+       
+       <div data-role="page" id="sample">
+           <div data-role="header">
+               <h1>Sample Page</h1>
+           </div><!-- /header -->
+
+            
+            <div data-role="content" class="sample-content">
+                
+                <div id="placeholder"></div>
+                
+                <h1>Handlebars JS Example</h1>
+                <script id="some-template" type="text/x-handlebars-template"> <table>
+                    <thead>
+                    <th>Name</th>
+                    <th>Job Title</th>
+                    <th>Twitter</th>
+                    </thead>
+                    <tbody>
+                    {{#users}}
+                    <tr>
+                    <td>{{fullName person}}</td>
+                    <td>{{jobTitle}}</td>
+                    <td><a href="https://twitter.com/{{twitter}}">@{{twitter}}</a></td>
+                    </tr> 
+                    {{/users}} 
+                    </tbody> 
+                    </table> 
+                    </script>
+                
+                
+                <script type="text/javascript">
+                    
+                    var source = $("#some-template").html();
+                    var template = Handlebars.compile(source);
+                    
+                    var data = {
+                        users: [ {
+                                person: {
+                                firstName: "Garry",
+                                lastName: "Finch"
+                                },
+                                jobTitle: "Front End Technical Lead",
+                                twitter: "gazraa"
+                                }, {
+                                person: {
+                                firstName: "Garry",
+                                lastName: "Finch"
+                                },
+                                jobTitle: "Photographer",
+                                twitter: "photobasics"
+                                }, {
+                                person: {
+                                firstName: "Garry",
+                                lastName: "Finch"
+                                },
+                                jobTitle: "LEGO Geek",
+                                twitter: "minifigures"
+                                } ]
+                    };
+                
+                Handlebars.registerHelper('fullName', function(person) {
+                                          return person.firstName + " " + person.lastName;
+                                          });
+                                          
+                                          
+                                          
+                                          $('#placeholder').append(template(data));
+
+                                    </script>
+              
+            </div><!-- /content -->
+            
+            
+            <div data-role="footer" style="overflow:hidden; background:black; border:none" data-position="fixed">
+                
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="index.html" data-transition="slide" data-icon="home" class="btn1 ui-btn-active">Home</a></li>
+                        <li><a href="music.html" data-transition="slide" data-icon="audio" class="btn1">Music</a></li>
+                        <li><a href="videos.html" data-transition="slide" data-icon="video" class="btn1">Videos</a></li>
+                        <li><a href="social.html" data-transition="slide" data-icon="user" class="btn1">Social</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div><!-- /footer -->
+            
+        </div><!-- /page -->
+        
+       
+       
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="lib/handlebars.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/single.js"></script>
+        <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
